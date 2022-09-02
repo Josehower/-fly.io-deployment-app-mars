@@ -14,10 +14,10 @@
 
    Remove the following lines:
 
-   ```toml
-   [mounts]
-     source = "postgres"
-     destination = "/postgres-volume"
+   ```diff
+   - [mounts]
+   -   source = "postgres"
+   -   destination = "/postgres-volume"
    ```
 
 5. Deploy first version of the app with `flyctl deploy`
