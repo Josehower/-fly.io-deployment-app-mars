@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "migrate": "dotenv -c development ley",
-    "flypostbuild": "yarn migrate up && yarn start"
+    "migrate": "dotenv ley",
+    "fly-postbuild": "su postgres -c \"pg_ctl start -D /run/postgresql/data\" && psql -U postgres postgres -h localhost --command=\"CREATE USER upleveled PASSWORD 'upleveled'\" && createdb -U postgres -h localhost --owner=upleveled upleveled && yarn ley up && yarn start"
   },
   "dependencies": {
     "dotenv-safe": "^8.2.0",
