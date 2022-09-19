@@ -29,15 +29,8 @@ ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 
 RUN apk add postgresql
-RUN mkdir -p /run/postgresql/data/
-RUN chown postgres:postgres /run/postgresql/data /run/postgresql/
-RUN su postgres -c "initdb -D /run/postgresql/data"
-RUN echo "host all all 0.0.0.0/0 trust" >> /run/postgresql/data/pg_hba.conf
-RUN echo "listen_addresses='*'" >> /run/postgresql/data/postgresql.conf
-
 
 COPY --from=builder /app ./
-
 
 ENV PORT 8080
 
